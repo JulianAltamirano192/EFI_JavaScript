@@ -106,11 +106,11 @@ function ProductoNuevo() {
     <form
       onSubmit={enviar}
       noValidate
-      className="space-y-4 rounded-lg border border-stone-200 bg-white p-6"
+      className="space-y-4 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6"
     >
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Nuevo producto</h2>
-        <Link to="/productos" className="text-sm text-stone-500 hover:underline">
+        <Link to="/productos" className="text-sm text-stone-500 dark:text-stone-400 hover:underline">
           Cerrar
         </Link>
       </div>
