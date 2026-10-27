@@ -1,0 +1,73 @@
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { getProducto } from '../services/api.js'
+
+// The API sends precio as a string ("10500.00") to keep the decimals exact.
+const formatoPrecio = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD' })
+
+function ProductoDetalle() {
+  const { id } = useParams()
+  // Stores which id the data belongs to, so loading is derived instead of set inside the effect.
+  const [resultado, setResultado] = useState({ id: null, producto: null, error: null })
+
+  useEffect(() => {
+    let ignorar = false
+    getProducto(id)
+      .then((producto) => !ignorar && setResultado({ id, producto, error: null }))
+      .catch((err) => !ignorar && setResultado({ id, producto: null, error: err.message }))
+    // If the id changes before the response arrives, the old response is ignored.
+    return () => {
+      ignorar = true
+    }
+  }, [id])
+
+  const loading = resultado.id !== id
+  const { producto, error } = resultado
+
+  if (loading) return <p className="text-stone-500">Cargando producto...</p>
+  if (error) {
+    return (
+      <div className="space-y-4">
+        <p className="rounded-md bg-red-50 p-4 text-red-700">{error}</p>
+        <Link to="/productos" className="text-amber-800 hover:underline">
+          Volver a productos
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <article className="grid gap-8 md:grid-cols-2">
+      {producto.imagen && (
+        <img
+          src={producto.imagen}
+          alt={producto.nombre}
+          className="aspect-square w-full rounded-lg object-cover"
+        />
+      )}
+      <div className="space-y-4">
+        <Link to="/productos" className="text-sm text-amber-800 hover:underline">
+          ← Volver a productos
+        </Link>
+        <h1 className="text-3xl font-semibold">{producto.nombre}</h1>
+        <p className="text-2xl text-amber-900">{formatoPrecio.format(Number(producto.precio))}</p>
+        {producto.descripcion && <p className="text-stone-600">{producto.descripcion}</p>}
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+          <dt className="text-stone-500">Marca</dt>
+          <dd>
+            {producto.marca.nombre}
+            {producto.marca.pais && ` (${producto.marca.pais})`}
+          </dd>
+          <dt className="text-stone-500">Categoría</dt>
+          <dd>{producto.categoria.nombre}</dd>
+          <dt className="text-stone-500">Material</dt>
+          <dd>{producto.material}</dd>
+          <dt className="text-stone-500">Stock</dt>
+          <dd>{producto.stock > 0 ? `${producto.stock} unidades` : 'Sin stock'}</dd>
+        </dl>
+      </div>
+    </article>
+  )
+}
+
+export default ProductoDetalle
