@@ -4,6 +4,7 @@ import { TemaContext } from './TemaContext.js'
 const CLAVE = 'tema'
 
 // Saved choice first; otherwise follow the operating system setting.
+// index.html repeats this rule in an inline script so the first paint already has the right theme.
 function temaInicial() {
   try {
     const guardado = localStorage.getItem(CLAVE)
