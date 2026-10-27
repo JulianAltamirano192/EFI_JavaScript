@@ -27,9 +27,9 @@ function Marcas() {
       {!loading && !error && (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {marcas.map((marca) => (
-            <li key={marca.id} className="rounded-lg border border-stone-200 bg-white p-4">
+            <li key={marca.id} className="rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
               <p className="font-medium">{marca.nombre}</p>
-              {marca.pais && <p className="text-sm text-stone-500">{marca.pais}</p>}
+              {marca.pais && <p className="text-sm text-stone-500 dark:text-stone-400">{marca.pais}</p>}
             </li>
           ))}
         </ul>

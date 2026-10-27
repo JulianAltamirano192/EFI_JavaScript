@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage.jsx'
 import Loader from '../components/Loader.jsx'
 import ProductoCard from '../components/ProductoCard.jsx'
+import { FavoritosContext } from '../context/FavoritosContext.js'
 import { deleteProducto, getCategorias, getMarcas, getProductos } from '../services/api.js'
 
 const POR_PAGINA = 9
 
 function Productos() {
+  const { quitarFavorito } = useContext(FavoritosContext)
   const [productos, setProductos] = useState([])
   const [paginas, setPaginas] = useState(1)
   const [pagina, setPagina] = useState(1)
@@ -77,6 +79,8 @@ function Productos() {
     if (!window.confirm(`¿Eliminar "${producto.nombre}"?`)) return
     try {
       await deleteProducto(producto.id)
+      // A deleted product cannot stay in favorites.
+      quitarFavorito(producto.id)
       // If it was the last product of the page, go back one page.
       if (productos.length === 1 && pagina > 1) cambiarPagina(pagina - 1)
       else recargar()
@@ -108,7 +112,7 @@ function Productos() {
           value={filtros.marca_id}
           onChange={cambiarFiltro}
           aria-label="Filtrar por marca"
-          className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm"
+          className="rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 px-3 py-2 text-sm"
         >
           <option value="">Todas las marcas</option>
           {marcas.map((marca) => (
@@ -122,7 +126,7 @@ function Productos() {
           value={filtros.categoria_id}
           onChange={cambiarFiltro}
           aria-label="Filtrar por categoría"
-          className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm"
+          className="rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 px-3 py-2 text-sm"
         >
           <option value="">Todas las categorías</option>
           {categorias.map((categoria) => (
@@ -138,7 +142,7 @@ function Productos() {
       {loading ? (
         <Loader texto="Cargando productos..." />
       ) : productos.length === 0 ? (
-        <p className="text-stone-500">No hay productos para mostrar.</p>
+        <p className="text-stone-500 dark:text-stone-400">No hay productos para mostrar.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {productos.map((producto) => (
@@ -158,18 +162,18 @@ function Productos() {
             type="button"
             onClick={() => cambiarPagina(pagina - 1)}
             disabled={pagina === 1 || loading}
-            className="rounded-md border border-stone-300 px-3 py-1.5 text-sm disabled:opacity-40"
+            className="rounded-md border border-stone-300 dark:border-stone-700 px-3 py-1.5 text-sm disabled:opacity-40"
           >
             Anterior
           </button>
-          <span className="text-sm text-stone-600">
+          <span className="text-sm text-stone-600 dark:text-stone-300">
             Página {pagina} de {paginas}
           </span>
           <button
             type="button"
             onClick={() => cambiarPagina(pagina + 1)}
             disabled={pagina === paginas || loading}
-            className="rounded-md border border-stone-300 px-3 py-1.5 text-sm disabled:opacity-40"
+            className="rounded-md border border-stone-300 dark:border-stone-700 px-3 py-1.5 text-sm disabled:opacity-40"
           >
             Siguiente
           </button>
