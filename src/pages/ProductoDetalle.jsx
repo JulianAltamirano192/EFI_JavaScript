@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import ErrorMessage from '../components/ErrorMessage.jsx'
+import Loader from '../components/Loader.jsx'
 import { getProducto } from '../services/api.js'
-
-// The API sends precio as a string ("10500.00") to keep the decimals exact.
-const formatoPrecio = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD' })
+import { formatearPrecio } from '../utils/precio.js'
 
 function ProductoDetalle() {
   const { id } = useParams()
@@ -24,11 +24,11 @@ function ProductoDetalle() {
   const loading = resultado.id !== id
   const { producto, error } = resultado
 
-  if (loading) return <p className="text-stone-500">Cargando producto...</p>
+  if (loading) return <Loader texto="Cargando producto..." />
   if (error) {
     return (
       <div className="space-y-4">
-        <p className="rounded-md bg-red-50 p-4 text-red-700">{error}</p>
+        <ErrorMessage mensaje={error} />
         <Link to="/productos" className="text-amber-800 hover:underline">
           Volver a productos
         </Link>
@@ -50,7 +50,7 @@ function ProductoDetalle() {
           ← Volver a productos
         </Link>
         <h1 className="text-3xl font-semibold">{producto.nombre}</h1>
-        <p className="text-2xl text-amber-900">{formatoPrecio.format(Number(producto.precio))}</p>
+        <p className="text-2xl text-amber-900">{formatearPrecio(producto.precio)}</p>
         {producto.descripcion && <p className="text-stone-600">{producto.descripcion}</p>}
         <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
           <dt className="text-stone-500">Marca</dt>
