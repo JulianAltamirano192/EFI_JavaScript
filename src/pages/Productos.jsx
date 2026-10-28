@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage.jsx'
+import { IconoChevron } from '../components/Iconos.jsx'
 import Loader from '../components/Loader.jsx'
 import ProductoCard from '../components/ProductoCard.jsx'
 import { FavoritosContext } from '../context/FavoritosContext.js'
@@ -92,12 +93,12 @@ function Productos() {
   const nombreDeMarca = (id) => marcas.find((marca) => marca.id === id)?.nombre
 
   return (
-    <section className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold">Productos</h1>
+    <section className="space-y-8">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-stone-200 pb-6 dark:border-stone-800">
+        <h1 className="text-5xl font-medium tracking-tight text-stone-900 sm:text-6xl dark:text-stone-50">Productos</h1>
         <Link
           to="nuevo"
-          className="rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800"
+          className="inline-flex min-h-11 items-center border border-stone-900/70 px-5 text-xs font-medium uppercase tracking-[0.18em] text-stone-900 transition-colors hover:bg-stone-900 hover:text-marfil sm:min-h-10 dark:border-stone-500 dark:text-stone-100 dark:hover:border-oro-300 dark:hover:bg-oro-300 dark:hover:text-stone-950"
         >
           Nuevo producto
         </Link>
@@ -107,34 +108,40 @@ function Productos() {
       <Outlet context={{ marcas, categorias, recargar }} />
 
       <div className="flex flex-wrap gap-3">
-        <select
-          name="marca_id"
-          value={filtros.marca_id}
-          onChange={cambiarFiltro}
-          aria-label="Filtrar por marca"
-          className="rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 px-3 py-2 text-sm"
-        >
-          <option value="">Todas las marcas</option>
-          {marcas.map((marca) => (
-            <option key={marca.id} value={marca.id}>
-              {marca.nombre}
-            </option>
-          ))}
-        </select>
-        <select
-          name="categoria_id"
-          value={filtros.categoria_id}
-          onChange={cambiarFiltro}
-          aria-label="Filtrar por categoría"
-          className="rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 px-3 py-2 text-sm"
-        >
-          <option value="">Todas las categorías</option>
-          {categorias.map((categoria) => (
-            <option key={categoria.id} value={categoria.id}>
-              {categoria.nombre}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            name="marca_id"
+            value={filtros.marca_id}
+            onChange={cambiarFiltro}
+            aria-label="Filtrar por marca"
+            className="min-h-11 appearance-none border border-stone-300 bg-transparent py-2 pl-4 pr-10 text-sm text-stone-700 transition-colors hover:border-stone-500 sm:min-h-10 dark:border-stone-700 dark:bg-noche dark:text-stone-200 dark:hover:border-stone-500"
+          >
+            <option value="">Todas las marcas</option>
+            {marcas.map((marca) => (
+              <option key={marca.id} value={marca.id}>
+                {marca.nombre}
+              </option>
+            ))}
+          </select>
+          <IconoChevron className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        </div>
+        <div className="relative">
+          <select
+            name="categoria_id"
+            value={filtros.categoria_id}
+            onChange={cambiarFiltro}
+            aria-label="Filtrar por categoría"
+            className="min-h-11 appearance-none border border-stone-300 bg-transparent py-2 pl-4 pr-10 text-sm text-stone-700 transition-colors hover:border-stone-500 sm:min-h-10 dark:border-stone-700 dark:bg-noche dark:text-stone-200 dark:hover:border-stone-500"
+          >
+            <option value="">Todas las categorías</option>
+            {categorias.map((categoria) => (
+              <option key={categoria.id} value={categoria.id}>
+                {categoria.nombre}
+              </option>
+            ))}
+          </select>
+          <IconoChevron className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        </div>
       </div>
 
       {error && <ErrorMessage mensaje={error} />}
@@ -142,9 +149,9 @@ function Productos() {
       {loading ? (
         <Loader texto="Cargando productos..." />
       ) : productos.length === 0 ? (
-        <p className="text-stone-500 dark:text-stone-400">No hay productos para mostrar.</p>
+        <p className="py-16 text-center font-display text-2xl italic text-stone-500 dark:text-stone-400">No hay productos para mostrar.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
           {productos.map((producto) => (
             <ProductoCard
               key={producto.id}
@@ -157,23 +164,23 @@ function Productos() {
       )}
 
       {paginas > 1 && (
-        <nav aria-label="Paginación" className="flex items-center justify-center gap-4">
+        <nav aria-label="Paginación" className="flex items-center justify-center gap-6 border-t border-stone-200 pt-8 dark:border-stone-800">
           <button
             type="button"
             onClick={() => cambiarPagina(pagina - 1)}
             disabled={pagina === 1 || loading}
-            className="rounded-md border border-stone-300 dark:border-stone-700 px-3 py-1.5 text-sm disabled:opacity-40"
+            className="min-h-11 border-b border-transparent px-1 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 transition-colors hover:border-oro-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-transparent sm:min-h-9 dark:text-stone-200 dark:hover:border-oro-300"
           >
             Anterior
           </button>
-          <span className="text-sm text-stone-600 dark:text-stone-300">
+          <span className="font-display text-lg italic text-stone-500 dark:text-stone-400">
             Página {pagina} de {paginas}
           </span>
           <button
             type="button"
             onClick={() => cambiarPagina(pagina + 1)}
             disabled={pagina === paginas || loading}
-            className="rounded-md border border-stone-300 dark:border-stone-700 px-3 py-1.5 text-sm disabled:opacity-40"
+            className="min-h-11 border-b border-transparent px-1 text-xs font-medium uppercase tracking-[0.18em] text-stone-700 transition-colors hover:border-oro-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-transparent sm:min-h-9 dark:text-stone-200 dark:hover:border-oro-300"
           >
             Siguiente
           </button>
