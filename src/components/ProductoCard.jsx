@@ -16,7 +16,7 @@ function ProductoCard({ producto, marca, onEliminar }) {
           <img
             src={producto.imagen}
             alt={producto.nombre}
-            className="aspect-square w-full object-cover"
+            className="aspect-square w-full object-cover dark:brightness-90"
           />
         ) : (
           <div className="aspect-square w-full bg-stone-100 dark:bg-stone-800" />
@@ -37,7 +37,7 @@ function ProductoCard({ producto, marca, onEliminar }) {
             type="button"
             onClick={() => agregarAlCarrito({ ...producto, marca })}
             disabled={sinStock}
-            className="w-full rounded-md bg-stone-100 hover:bg-amber-100 text-stone-800 hover:text-amber-900 dark:bg-stone-800 dark:hover:bg-amber-950/60 dark:text-stone-200 dark:hover:text-amber-200 py-1.5 text-xs font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="min-h-11 w-full rounded-md bg-amber-700 text-sm font-medium text-white transition-colors hover:bg-amber-800 disabled:cursor-not-allowed disabled:opacity-40 sm:min-h-9"
           >
             {sinStock ? 'Sin stock' : '+ Agregar al carrito'}
           </button>
@@ -47,7 +47,7 @@ function ProductoCard({ producto, marca, onEliminar }) {
               <button
                 type="button"
                 onClick={() => onEliminar(producto)}
-                className="text-sm text-red-700 hover:underline dark:text-red-400"
+                className="min-h-11 rounded-md px-2 text-sm text-stone-500 transition-colors hover:bg-red-50 hover:text-red-700 sm:min-h-8 dark:text-stone-400 dark:hover:bg-red-950/40 dark:hover:text-red-400"
               >
                 Eliminar
               </button>

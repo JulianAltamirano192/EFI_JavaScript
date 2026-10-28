@@ -94,7 +94,7 @@ function Productos() {
   return (
     <section className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold">Productos</h1>
+        <h1 className="text-3xl font-bold">Productos</h1>
         <Link
           to="nuevo"
           className="rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800"

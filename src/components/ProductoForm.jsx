@@ -106,7 +106,7 @@ function ProductoForm({ titulo, marcas, categorias, onGuardar }) {
       className="space-y-4 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6"
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">{titulo}</h2>
+        <h2 className="text-2xl font-bold">{titulo}</h2>
         <Link to="/productos" className="text-sm text-stone-500 dark:text-stone-400 hover:underline">
           Cerrar
         </Link>
