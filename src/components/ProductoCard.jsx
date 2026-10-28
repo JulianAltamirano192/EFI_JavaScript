@@ -63,7 +63,7 @@ function ProductoCard({ producto, marca, onEliminar }) {
               <button
                 type="button"
                 onClick={() => onEliminar(producto)}
-                className="min-h-11 text-xs uppercase tracking-[0.16em] text-stone-400 transition-colors hover:text-red-700 sm:min-h-8 dark:text-stone-500 dark:hover:text-red-400"
+                className="min-h-11 text-xs uppercase tracking-[0.16em] text-stone-500 transition-colors hover:text-red-700 sm:min-h-8 dark:text-stone-400 dark:hover:text-red-400"
               >
                 Eliminar
               </button>

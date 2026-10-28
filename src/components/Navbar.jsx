@@ -32,7 +32,7 @@ function Navbar() {
                   <NavLink
                     to={to}
                     className={({ isActive }) =>
-                      `flex min-h-11 items-center border-b px-2 text-xs font-medium uppercase tracking-[0.16em] transition-colors sm:min-h-9 sm:px-3 ${
+                      `flex min-h-11 items-center border-b px-1.5 text-xs font-medium uppercase tracking-[0.1em] transition-colors sm:min-h-9 sm:px-3 sm:tracking-[0.16em] ${
                         isActive
                           ? 'border-oro-500 text-stone-900 dark:border-oro-300 dark:text-stone-50'
                           : 'border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-50'
@@ -49,7 +49,7 @@ function Navbar() {
               type="button"
               onClick={abrirCarrito}
               aria-label="Abrir carrito de compras"
-              className="relative flex min-h-11 items-center gap-2 px-2 text-xs font-medium uppercase tracking-[0.16em] text-stone-600 transition-colors hover:text-stone-900 sm:min-h-9 sm:px-3 dark:text-stone-300 dark:hover:text-stone-50"
+              className="relative flex min-h-11 items-center gap-2 px-1.5 text-xs font-medium uppercase tracking-[0.16em] text-stone-600 transition-colors hover:text-stone-900 sm:min-h-9 sm:px-3 dark:text-stone-300 dark:hover:text-stone-50"
             >
               <IconoBolsa className="size-5" />
               <span className="hidden sm:inline">Carrito</span>
@@ -63,7 +63,7 @@ function Navbar() {
               type="button"
               onClick={alternarTema}
               aria-label={tema === 'oscuro' ? 'Usar tema claro' : 'Usar tema oscuro'}
-              className="flex min-h-11 items-center gap-2 px-2 text-xs font-medium uppercase tracking-[0.16em] text-stone-600 transition-colors hover:text-stone-900 sm:min-h-9 sm:px-3 dark:text-stone-300 dark:hover:text-stone-50"
+              className="flex min-h-11 items-center gap-2 px-1.5 text-xs font-medium uppercase tracking-[0.16em] text-stone-600 transition-colors hover:text-stone-900 sm:min-h-9 sm:px-3 dark:text-stone-300 dark:hover:text-stone-50"
             >
               {tema === 'oscuro' ? <IconoSol className="size-5" /> : <IconoLuna className="size-5" />}
               <span className="hidden sm:inline"> {tema === 'oscuro' ? 'Claro' : 'Oscuro'}</span>

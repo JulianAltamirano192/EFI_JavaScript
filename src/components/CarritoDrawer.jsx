@@ -168,7 +168,7 @@ function CarritoDrawer() {
                       <button
                         type="button"
                         onClick={() => quitarDelCarrito(item.id)}
-                        className="min-h-11 text-[11px] uppercase tracking-[0.18em] text-stone-400 underline-offset-4 transition-colors hover:text-red-700 hover:underline sm:min-h-0 dark:text-stone-500 dark:hover:text-red-400"
+                        className="min-h-11 text-[11px] uppercase tracking-[0.18em] text-stone-500 underline-offset-4 transition-colors hover:text-red-700 hover:underline sm:min-h-0 dark:text-stone-400 dark:hover:text-red-400"
                       >
                         Quitar
                       </button>
