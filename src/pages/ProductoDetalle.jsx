@@ -76,9 +76,7 @@ function ProductoDetalle() {
         {/* Sección de compra / Carrito */}
         <div className="rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 space-y-3">
           <div className="flex items-center gap-3">
-            <label htmlFor="cantidad" className="text-sm font-medium text-stone-700 dark:text-stone-300">
-              Cantidad:
-            </label>
+            <span className="text-sm font-medium text-stone-700 dark:text-stone-300">Cantidad:</span>
             <div className="flex items-center rounded-md border border-stone-300 dark:border-stone-700">
               <button
                 type="button"
