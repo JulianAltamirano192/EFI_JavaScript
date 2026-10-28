@@ -20,16 +20,16 @@ function Marcas() {
   }, [])
 
   return (
-    <section className="space-y-6">
-      <h1 className="text-3xl font-bold">Marcas</h1>
+    <section className="space-y-8">
+      <h1 className="border-b border-stone-200 pb-6 text-5xl font-medium tracking-tight text-stone-900 sm:text-6xl dark:border-stone-800 dark:text-stone-50">Marcas</h1>
       {loading && <Loader texto="Cargando marcas..." />}
       {error && <ErrorMessage mensaje={error} />}
       {!loading && !error && (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid border-l border-t border-stone-200 sm:grid-cols-2 lg:grid-cols-3 dark:border-stone-800">
           {marcas.map((marca) => (
-            <li key={marca.id} className="rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
-              <p className="font-medium">{marca.nombre}</p>
-              {marca.pais && <p className="text-sm text-stone-500 dark:text-stone-400">{marca.pais}</p>}
+            <li key={marca.id} className="flex flex-col items-center justify-center gap-2 border-b border-r border-stone-200 px-6 py-10 text-center transition-colors hover:bg-white dark:border-stone-800 dark:hover:bg-noche-claro">
+              <p className="font-display text-3xl text-stone-900 dark:text-stone-50">{marca.nombre}</p>
+              {marca.pais && <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-oro-700 dark:text-oro-300">{marca.pais}</p>}
             </li>
           ))}
         </ul>

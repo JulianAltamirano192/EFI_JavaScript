@@ -3,22 +3,52 @@
 /* dark: classes follow the "dark" class that TemaProvider puts on <html>, not the system setting. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Serif for headings and the logo; the font is loaded with a <link> in index.html. */
+/* Fonts are loaded with a <link> in index.html: Cormorant Garamond for headings, Jost for the rest. */
 @theme {
   --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  /* Muted gold, used for details instead of a saturated orange. */
+  --color-oro-50: #f9f5ec;
+  --color-oro-100: #f1e8d4;
+  --color-oro-200: #e3d0a6;
+  --color-oro-300: #d2b77d;
+  --color-oro-400: #bf9d5a;
+  --color-oro-500: #a88544;
+  --color-oro-600: #8b6c35;
+  --color-oro-700: #6e552b;
+  --color-oro-800: #554223;
+  --color-oro-900: #3d301a;
+  --color-oro-950: #241c10;
+
+  /* Page backgrounds: warm ivory in light mode, almost black in dark mode. */
+  --color-marfil: #faf8f4;
+  --color-noche: #0f0e0c;
+  --color-noche-claro: #181613;
 }
 
 @layer base {
   /* Same background as Layout, so overscroll on phones does not show white edges in dark mode. */
   html {
-    background-color: var(--color-stone-50);
+    background-color: var(--color-marfil);
+    -webkit-font-smoothing: antialiased;
   }
   html.dark {
-    background-color: var(--color-stone-950);
+    background-color: var(--color-noche);
   }
 
   h1,
   h2 {
     font-family: var(--font-display);
+  }
+
+  ::selection {
+    background-color: var(--color-oro-200);
+    color: var(--color-stone-900);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-oro-500);
+    outline-offset: 3px;
   }
 }

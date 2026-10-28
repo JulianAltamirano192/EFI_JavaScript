@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { CarritoContext } from '../context/CarritoContext.js'
 import { formatearPrecio } from '../utils/precio.js'
+import { IconoBolsa, IconoCerrar, IconoExito, IconoMas, IconoMenos } from './Iconos.jsx'
 
 function CarritoDrawer() {
   const {
@@ -44,7 +45,7 @@ function CarritoDrawer() {
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-stone-950/50 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-stone-950/40 backdrop-blur-[2px] transition-opacity dark:bg-black/60"
         onClick={handleCerrar}
         aria-hidden="true"
       />
@@ -54,14 +55,14 @@ function CarritoDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label="Carrito de compras"
-        className="relative z-10 flex h-full w-full max-w-md flex-col bg-white dark:bg-stone-900 border-l border-stone-200 dark:border-stone-800 shadow-xl"
+        className="relative z-10 flex h-full w-full max-w-md flex-col border-stone-200 bg-marfil sm:border-l shadow-2xl shadow-stone-900/20 dark:border-stone-800 dark:bg-noche-claro dark:shadow-black/50"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-stone-200 dark:border-stone-800 px-6 py-4">
-          <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-bold">Carrito de compras</h2>
+        <div className="flex items-center justify-between gap-4 border-b border-stone-200 px-5 py-4 sm:px-8 sm:py-6 dark:border-stone-800">
+          <div className="flex items-baseline gap-3">
+            <h2 className="text-3xl font-medium text-stone-900 dark:text-stone-50">Carrito de compras</h2>
             {cantidadTotal > 0 && (
-              <span className="rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200 px-2 py-0.5 text-xs font-semibold">
+              <span className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.2em] text-oro-700 dark:text-oro-300">
                 {cantidadTotal} {cantidadTotal === 1 ? 'ítem' : 'ítems'}
               </span>
             )}
@@ -69,49 +70,49 @@ function CarritoDrawer() {
           <button
             type="button"
             onClick={handleCerrar}
-            className="rounded-md p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-800 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+            className="-mr-2 flex size-11 shrink-0 items-center justify-center text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-50"
             aria-label="Cerrar carrito"
           >
-            ✕
+            <IconoCerrar className="size-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto px-5 py-2 sm:px-8">
           {comprado ? (
-            <div className="flex h-full flex-col items-center justify-center text-center space-y-4">
-              <span className="text-4xl" role="img" aria-label="Éxito">
-                🎉
+            <div className="flex h-full flex-col items-center justify-center space-y-4 py-10 text-center">
+              <span className="text-oro-600 dark:text-oro-300" role="img" aria-label="Éxito">
+                <IconoExito className="size-14" />
               </span>
-              <h3 className="text-xl font-semibold text-amber-800 dark:text-amber-300">
+              <h3 className="font-display text-3xl text-stone-900 dark:text-stone-50">
                 ¡Compra simulada con éxito!
               </h3>
-              <p className="text-sm text-stone-600 dark:text-stone-300">
+              <p className="max-w-xs text-sm font-light leading-relaxed text-stone-600 dark:text-stone-300">
                 Compra simulada: no se registra en la API ni descuenta stock.
               </p>
               <button
                 type="button"
                 onClick={handleCerrar}
-                className="mt-2 rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800"
+                className="inline-flex min-h-12 items-center justify-center bg-stone-900 px-6 text-xs font-medium uppercase tracking-[0.2em] text-marfil transition-colors hover:bg-oro-700 dark:bg-oro-300 dark:text-stone-950 dark:hover:bg-oro-200 mt-4"
               >
                 Cerrar
               </button>
             </div>
           ) : items.length === 0 ? (
-            <div className="flex h-full flex-col items-center justify-center text-center space-y-3">
-              <span className="text-4xl" role="img" aria-label="Carrito vacío">
-                🛒
+            <div className="flex h-full flex-col items-center justify-center space-y-3 py-10 text-center">
+              <span className="text-stone-400 dark:text-stone-500" role="img" aria-label="Carrito vacío">
+                <IconoBolsa className="size-14" />
               </span>
-              <p className="text-stone-500 dark:text-stone-400 font-medium">
+              <p className="pt-2 font-display text-2xl italic text-stone-700 dark:text-stone-300">
                 Tu carrito está vacío.
               </p>
-              <p className="text-xs text-stone-400 dark:text-stone-500">
+              <p className="max-w-xs text-sm font-light text-stone-500 dark:text-stone-400">
                 Explorá el catálogo y agregá las joyas que más te gusten.
               </p>
               <button
                 type="button"
                 onClick={handleCerrar}
-                className="rounded-md border border-stone-300 dark:border-stone-700 px-4 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"
+                className="inline-flex min-h-12 items-center justify-center border border-stone-300 px-6 text-xs font-medium uppercase tracking-[0.2em] text-stone-800 transition-colors hover:border-stone-900 dark:border-stone-700 dark:text-stone-200 dark:hover:border-oro-300 mt-3"
               >
                 Volver a la tienda
               </button>
@@ -119,55 +120,55 @@ function CarritoDrawer() {
           ) : (
             <ul className="divide-y divide-stone-200 dark:divide-stone-800">
               {items.map((item) => (
-                <li key={item.id} className="flex gap-4 py-4">
+                <li key={item.id} className="flex gap-4 py-5">
                   {item.imagen ? (
                     <img
                       src={item.imagen}
                       alt={item.nombre}
-                      className="h-20 w-20 shrink-0 rounded-md object-cover border border-stone-200 dark:border-stone-800"
+                      className="h-28 w-22 shrink-0 bg-stone-100 object-cover saturate-[.85] dark:bg-noche dark:brightness-90"
                     />
                   ) : (
-                    <div className="h-20 w-20 shrink-0 rounded-md bg-stone-100 dark:bg-stone-800" />
+                    <div className="h-28 w-22 shrink-0 bg-linear-to-br from-stone-100 to-oro-100/60 dark:from-noche dark:to-oro-950/40" />
                   )}
-                  <div className="flex flex-1 flex-col justify-between">
+                  <div className="flex min-w-0 flex-1 flex-col justify-between">
                     <div>
                       {item.marca && (
-                        <p className="text-xs uppercase tracking-wide text-stone-400 dark:text-stone-500">
+                        <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-oro-700 dark:text-oro-300">
                           {item.marca}
                         </p>
                       )}
-                      <p className="text-sm font-medium">{item.nombre}</p>
-                      <p className="text-sm font-semibold text-amber-900 dark:text-amber-300">
+                      <p className="font-display text-lg leading-snug text-stone-900 dark:text-stone-50">{item.nombre}</p>
+                      <p className="text-sm tracking-wide text-stone-600 dark:text-stone-300">
                         {formatearPrecio(item.precio)}
                       </p>
                     </div>
 
                     <div className="flex items-center justify-between pt-2">
-                      <div className="flex items-center rounded-md border border-stone-300 dark:border-stone-700">
+                      <div className="flex items-center border border-stone-300 dark:border-stone-700">
                         <button
                           type="button"
                           onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
-                          className="px-2.5 py-0.5 text-sm font-bold text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                          className="flex size-11 items-center justify-center text-stone-600 transition-colors hover:bg-stone-100 sm:size-8 dark:text-stone-300 dark:hover:bg-stone-800"
                           aria-label={`Restar una unidad de ${item.nombre}`}
                         >
-                          -
+                          <IconoMenos className="size-3.5" />
                         </button>
-                        <span className="px-2 text-xs font-semibold">{item.cantidad}</span>
+                        <span className="min-w-7 text-center text-sm tabular-nums">{item.cantidad}</span>
                         <button
                           type="button"
                           onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
                           disabled={typeof item.stock === 'number' && item.cantidad >= item.stock}
-                          className="px-2.5 py-0.5 text-sm font-bold text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800 disabled:opacity-40"
+                          className="flex size-11 items-center justify-center text-stone-600 transition-colors hover:bg-stone-100 sm:size-8 dark:text-stone-300 dark:hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
                           aria-label={`Sumar una unidad de ${item.nombre}`}
                         >
-                          +
+                          <IconoMas className="size-3.5" />
                         </button>
                       </div>
 
                       <button
                         type="button"
                         onClick={() => quitarDelCarrito(item.id)}
-                        className="text-xs text-red-600 hover:underline dark:text-red-400"
+                        className="min-h-11 text-[11px] uppercase tracking-[0.18em] text-stone-500 underline-offset-4 transition-colors hover:text-red-700 hover:underline sm:min-h-0 dark:text-stone-400 dark:hover:text-red-400"
                       >
                         Quitar
                       </button>
@@ -181,26 +182,26 @@ function CarritoDrawer() {
 
         {/* Footer */}
         {items.length > 0 && !comprado && (
-          <div className="border-t border-stone-200 dark:border-stone-800 p-6 space-y-4">
-            <div className="flex items-center justify-between text-base font-semibold">
-              <span>Total estimado</span>
-              <span className="text-xl text-amber-900 dark:text-amber-300">
+          <div className="space-y-5 border-t border-stone-200 px-5 py-5 sm:px-8 sm:py-6 dark:border-stone-800">
+            <div className="flex items-baseline justify-between gap-4">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">Total estimado</span>
+              <span className="font-display text-3xl text-stone-900 dark:text-oro-200">
                 {formatearPrecio(total)}
               </span>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <button
                 type="button"
                 onClick={vaciarCarrito}
-                className="w-1/3 rounded-md border border-stone-300 dark:border-stone-700 px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"
+                className="inline-flex min-h-12 items-center justify-center border border-stone-300 text-xs font-medium uppercase tracking-[0.2em] text-stone-800 transition-colors hover:border-stone-900 dark:border-stone-700 dark:text-stone-200 dark:hover:border-oro-300 w-1/3 px-3"
               >
                 Vaciar
               </button>
               <button
                 type="button"
                 onClick={finalizarCompra}
-                className="w-2/3 rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800"
+                className="inline-flex min-h-12 items-center justify-center bg-stone-900 text-xs font-medium uppercase tracking-[0.2em] text-marfil transition-colors hover:bg-oro-700 dark:bg-oro-300 dark:text-stone-950 dark:hover:bg-oro-200 w-2/3 px-4"
               >
                 Finalizar compra
               </button>

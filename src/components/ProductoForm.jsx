@@ -103,18 +103,18 @@ function ProductoForm({ titulo, marcas, categorias, onGuardar }) {
     <form
       onSubmit={enviar}
       noValidate
-      className="space-y-4 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6"
+      className="space-y-6 border border-stone-200 bg-white p-6 sm:p-10 dark:border-stone-800 dark:bg-noche-claro"
     >
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">{titulo}</h2>
-        <Link to="/productos" className="text-sm text-stone-500 dark:text-stone-400 hover:underline">
+      <div className="flex items-center justify-between gap-4 border-b border-stone-200 pb-5 dark:border-stone-800">
+        <h2 className="text-3xl font-medium text-stone-900 dark:text-stone-50">{titulo}</h2>
+        <Link to="/productos" className="inline-flex min-h-11 items-center text-xs uppercase tracking-[0.18em] text-stone-500 transition-colors hover:text-stone-900 sm:min-h-0 dark:text-stone-400 dark:hover:text-stone-50">
           Cerrar
         </Link>
       </div>
 
       {errorApi && <ErrorMessage mensaje={errorApi} />}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <Campo etiqueta="Nombre" nombre="nombre" error={errores.nombre}>
           <input {...props('nombre')} maxLength={150} />
         </Campo>
@@ -158,7 +158,7 @@ function ProductoForm({ titulo, marcas, categorias, onGuardar }) {
       <button
         type="submit"
         disabled={enviando}
-        className="rounded-md bg-amber-700 px-4 py-2 font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+        className="inline-flex min-h-12 items-center bg-stone-900 px-8 text-xs font-medium uppercase tracking-[0.2em] text-marfil transition-colors hover:bg-oro-700 disabled:opacity-60 dark:bg-oro-300 dark:text-stone-950 dark:hover:bg-oro-200"
       >
         {enviando ? 'Guardando...' : 'Guardar producto'}
       </button>
