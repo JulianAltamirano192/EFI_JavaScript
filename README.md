@@ -2,6 +2,11 @@
 
 Aplicación en React que consume la API de joyería y relojería del EFI de Python.
 
+## En producción
+
+- App: https://efi-javascript.vercel.app
+- API: https://efi-joyeria.duckdns.org (documentación interactiva en https://efi-joyeria.duckdns.org/docs)
+
 ## Cómo correrlo
 
 1. Levantar la API del EFI de Python (queda en `http://localhost:8000`).
