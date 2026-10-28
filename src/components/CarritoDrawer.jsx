@@ -87,7 +87,7 @@ function CarritoDrawer() {
                 ¡Compra simulada con éxito!
               </h3>
               <p className="text-sm text-stone-600 dark:text-stone-300">
-                Tu pedido fue registrado en el sistema del EFI.
+                Compra simulada: no se registra en la API ni descuenta stock.
               </p>
               <button
                 type="button"
