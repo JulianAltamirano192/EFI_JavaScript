@@ -20,9 +20,16 @@ Aplicación en React que consume la API de joyería y relojería del EFI de Pyth
 
 La app queda en `http://localhost:5173`.
 
-## Tecnologías
+## Tecnologías y Funcionalidades
 
-React con Vite, Tailwind CSS y React Router.
+- **React con Vite y Tailwind CSS**
+- **Enrutamiento (React Router):** Rutas base (`/`, `/productos`, `/marcas`, `/favoritos`), ruta dinámica (`/productos/:id`) y ruta anidada (`/productos/nuevo`).
+- **Consumo de API:** Peticiones asíncronas para lectura paginada, filtros por marca/categoría, creación con validación y eliminación.
+- **Estado Global (Context API):**
+  - **Favoritos (`FavoritosContext`):** Guardado y persistencia en `localStorage`.
+  - **Carrito de Compras (`CarritoContext`):** Control de unidades, cálculo de totales, drawer interactivo y persistencia en `localStorage`.
+  - **Tema (`TemaContext`):** Modo claro y oscuro con Tailwind y script anti-flash.
+- **Hosting:** Preparado para Vercel con reescritura para SPA en `vercel.json`.
 
 ## Integrantes
 

@@ -5,6 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joyería y Relojería</title>
+    <script>
+      // Applies the theme before React loads, so a dark page does not flash light on reload.
+      // Same rule as src/context/TemaProvider.jsx: saved choice first, then the system setting.
+      ;(function () {
+        var tema
+        try {
+          tema = localStorage.getItem('tema')
+        } catch (e) {}
+        if (tema !== 'claro' && tema !== 'oscuro') {
+          tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro'
+        }
+        document.documentElement.classList.toggle('dark', tema === 'oscuro')
+        document.documentElement.style.colorScheme = tema === 'oscuro' ? 'dark' : 'light'
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

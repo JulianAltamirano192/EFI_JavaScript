@@ -4,7 +4,7 @@ function NoEncontrado() {
   return (
     <section className="space-y-4 py-12 text-center">
       <h1 className="text-2xl font-semibold">Página no encontrada</h1>
-      <Link to="/" className="text-amber-800 hover:underline">
+      <Link to="/" className="text-amber-800 dark:text-amber-400 hover:underline">
         Volver al inicio
       </Link>
     </section>

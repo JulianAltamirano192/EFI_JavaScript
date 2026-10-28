@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+/* dark: classes follow the "dark" class that TemaProvider puts on <html>, not the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
