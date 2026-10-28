@@ -2,3 +2,23 @@
 
 /* dark: classes follow the "dark" class that TemaProvider puts on <html>, not the system setting. */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Serif for headings and the logo; the font is loaded with a <link> in index.html. */
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+}
+
+@layer base {
+  /* Same background as Layout, so overscroll on phones does not show white edges in dark mode. */
+  html {
+    background-color: var(--color-stone-50);
+  }
+  html.dark {
+    background-color: var(--color-stone-950);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+  }
+}

@@ -59,7 +59,7 @@ function CarritoDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-stone-200 dark:border-stone-800 px-6 py-4">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-semibold">Carrito de compras</h2>
+            <h2 className="text-2xl font-bold">Carrito de compras</h2>
             {cantidadTotal > 0 && (
               <span className="rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200 px-2 py-0.5 text-xs font-semibold">
                 {cantidadTotal} {cantidadTotal === 1 ? 'ítem' : 'ítems'}

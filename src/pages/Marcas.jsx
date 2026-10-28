@@ -21,7 +21,7 @@ function Marcas() {
 
   return (
     <section className="space-y-6">
-      <h1 className="text-2xl font-semibold">Marcas</h1>
+      <h1 className="text-3xl font-bold">Marcas</h1>
       {loading && <Loader texto="Cargando marcas..." />}
       {error && <ErrorMessage mensaje={error} />}
       {!loading && !error && (

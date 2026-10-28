@@ -62,14 +62,14 @@ function ProductoDetalle() {
         <img
           src={producto.imagen}
           alt={producto.nombre}
-          className="aspect-square w-full rounded-lg object-cover"
+          className="aspect-square w-full rounded-lg object-cover dark:brightness-90"
         />
       )}
       <div className="space-y-4">
         <Link to="/productos" className="text-sm text-amber-800 dark:text-amber-400 hover:underline">
           ← Volver a productos
         </Link>
-        <h1 className="text-3xl font-semibold">{producto.nombre}</h1>
+        <h1 className="text-4xl font-bold">{producto.nombre}</h1>
         <p className="text-2xl text-amber-900 dark:text-amber-300">{formatearPrecio(producto.precio)}</p>
         <FavoritoBoton producto={{ ...producto, marca: producto.marca.nombre }} />
 
@@ -123,7 +123,7 @@ function ProductoDetalle() {
         </div>
 
         {producto.descripcion && <p className="text-stone-600 dark:text-stone-300">{producto.descripcion}</p>}
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-2 text-sm">
           <dt className="text-stone-500 dark:text-stone-400">Marca</dt>
           <dd>
             {producto.marca.nombre}
