@@ -4,6 +4,7 @@ import ErrorMessage from '../components/ErrorMessage.jsx'
 import { IconoChevron } from '../components/Iconos.jsx'
 import Loader from '../components/Loader.jsx'
 import ProductoCard from '../components/ProductoCard.jsx'
+import { CarritoContext } from '../context/CarritoContext.js'
 import { FavoritosContext } from '../context/FavoritosContext.js'
 import { deleteProducto, getCategorias, getMarcas, getProductos } from '../services/api.js'
 
@@ -11,6 +12,7 @@ const POR_PAGINA = 9
 
 function Productos() {
   const { quitarFavorito } = useContext(FavoritosContext)
+  const { quitarDelCarrito } = useContext(CarritoContext)
   const [productos, setProductos] = useState([])
   const [paginas, setPaginas] = useState(1)
   const [pagina, setPagina] = useState(1)
@@ -80,8 +82,9 @@ function Productos() {
     if (!window.confirm(`¿Eliminar "${producto.nombre}"?`)) return
     try {
       await deleteProducto(producto.id)
-      // A deleted product cannot stay in favorites.
+      // A deleted product cannot stay in favorites or in the cart.
       quitarFavorito(producto.id)
+      quitarDelCarrito(producto.id)
       // If it was the last product of the page, go back one page.
       if (productos.length === 1 && pagina > 1) cambiarPagina(pagina - 1)
       else recargar()

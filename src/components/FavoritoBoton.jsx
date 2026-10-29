@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { FavoritosContext } from '../context/FavoritosContext.js'
 import { IconoCorazon, IconoCorazonLleno } from './Iconos.jsx'
 
-// producto must include the marca name as a string: { id, nombre, precio, imagen, marca }
+// producto must include the marca name as a string: { id, nombre, precio, imagen, marca, stock }
 function FavoritoBoton({ producto }) {
   const { esFavorito, alternarFavorito } = useContext(FavoritosContext)
   const activo = esFavorito(producto.id)

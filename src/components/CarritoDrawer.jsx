@@ -125,6 +125,7 @@ function CarritoDrawer() {
                     <img
                       src={item.imagen}
                       alt={item.nombre}
+                      loading="lazy"
                       className="h-28 w-22 shrink-0 bg-stone-100 object-cover saturate-[.85] dark:bg-noche dark:brightness-90"
                     />
                   ) : (
