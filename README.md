@@ -34,7 +34,11 @@ La app queda en `http://localhost:5173`.
   - **Favoritos (`FavoritosContext`):** Guardado y persistencia en `localStorage`.
   - **Carrito de Compras (`CarritoContext`):** Control de unidades, cálculo de totales, drawer interactivo y persistencia en `localStorage`.
   - **Tema (`TemaContext`):** Modo claro y oscuro con Tailwind y script anti-flash.
-- **Hosting:** Preparado para Vercel con reescritura para SPA en `vercel.json`.
+- **Hosting:** Desplegada en Vercel. La URL de la API se configura con la variable de entorno `VITE_API_URL` y `vercel.json` reescribe las rutas a `index.html` para que funcionen al recargar.
+
+## Organización del trabajo
+
+Las tareas se documentaron en el tablero kanban [EFI Joyería y Relojería](https://github.com/users/JulianAltamirano192/projects/1), vinculado a los repositorios del EFI de Python y de JavaScript. El desarrollo sigue GitFlow: ramas `feature/*` hacia `develop` y versiones desde `release/*` hacia `main`.
 
 ## Integrantes
 
