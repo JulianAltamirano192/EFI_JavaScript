@@ -30,9 +30,10 @@ function FavoritosProvider({ children }) {
   }
 
   // Only the fields the card needs are stored, so the Favoritos page works without calling the API.
-  function alternarFavorito({ id, nombre, precio, imagen, marca }) {
+  // stock is kept so the card can still cap the cart quantity and show "Sin stock".
+  function alternarFavorito({ id, nombre, precio, imagen, marca, stock }) {
     if (esFavorito(id)) quitarFavorito(id)
-    else setFavoritos((actuales) => [...actuales, { id, nombre, precio, imagen, marca }])
+    else setFavoritos((actuales) => [...actuales, { id, nombre, precio, imagen, marca, stock }])
   }
 
   return (

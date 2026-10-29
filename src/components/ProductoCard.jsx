@@ -20,6 +20,7 @@ function ProductoCard({ producto, marca, onEliminar }) {
           <img
             src={producto.imagen}
             alt={producto.nombre}
+            loading="lazy"
             className="aspect-4/5 w-full object-cover saturate-[.85] transition-transform duration-700 ease-out group-hover:scale-[1.03] dark:brightness-90"
           />
         ) : (
